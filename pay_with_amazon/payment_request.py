@@ -127,7 +127,7 @@ class PaymentRequest(object):
         if self._status_code == 200:
             self.success = True
             self._should_throttle = False
-            self.response = PaymentResponse(r.text)
+            self.response = PaymentResponse(r.content)
         elif (self._status_code == 500 or self._status_code ==
               503) and self.handle_throttle:
             self._should_throttle = True

@@ -40,8 +40,8 @@ class PaymentResponse(object):
             self._root = et.fromstring(xml)
             self._ns = self._namespace(self._root)
             self._response_type = self._root.tag.replace(self._ns, '')
-        except:
-            raise ValueError('Invalid XML.')
+        except Exception as e:
+            raise ValueError('Unable to parse XML: %s'%unicode(e.message))
 
         """There is a bug where 'eu' endpoint returns ErrorResponse XML node
         'RequestID' with capital 'ID'. 'na' endpoint returns 'RequestId'
